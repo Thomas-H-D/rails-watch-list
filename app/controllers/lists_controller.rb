@@ -34,6 +34,6 @@ class ListsController < ApplicationController
 
   def list_params
     # params.require(:list).permit(:name) -> pre-rails 8
-    params.expect(list: [ :name ])
+    params.expect(list: [ :name, :photo])
   end
 end

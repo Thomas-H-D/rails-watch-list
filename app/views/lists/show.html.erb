@@ -1,18 +1,32 @@
-<h1><%= @list.name %></h1>
-<div class="d-flex justify-content-evenly">
+<div class="banner d-flex flex-column justify-content-center align-items-center" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @list.photo.key, height: 300, crop: :fill %>')">
+  <h1><%= @list.name %></h1>
+</div>
+
+<div class="card_container d-flex flex-wrap justify-content-evenly">
   <% @list.bookmarks.each do |bookmark| %>
-    <div class="movie_card">
-      <%= image_tag "https://image.tmdb.org/t/p/w500#{bookmark.movie.poster_url}", alt: bookmark.movie.title, class: "movie_poster" %>
-      <h3><%= bookmark.movie.title %></h3>
-      <p><%= bookmark.movie.overview %></p>
-      <p class="pt-3">Top comment:</p>
-      <p><%= bookmark.comment %></p>
-      <div class="pt-3 d-flex align-items-end">
-        <%= link_to "Remove from List", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove this movie?" } %>
+      <div class="movie_card">
+        <div class="movie_card_inner">
+
+          <div class="flip_card_front">
+            <%= image_tag "https://image.tmdb.org/t/p/w500#{bookmark.movie.poster_url}", alt: bookmark.movie.title, class: "movie_poster" %>
+          </div>
+
+          <div class="flip_card_back">
+            <h3 class="m-2"><%= bookmark.movie.title %></h3>
+            <p><%= bookmark.movie.overview %></p>
+            <p class="pt-3">Top comment:</p>
+            <p><%= bookmark.comment %></p>
+            <div class="pt-5">
+              <%= link_to "Remove from List", bookmark_path(bookmark), class: "btn btn-warning shadow-lg", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove this movie?" } %>
+            </div>
+          </div>
+
+        </div>
       </div>
-    </div>
   <% end %>
 </div>
-<%= link_to "Add a bookmark", new_list_bookmark_path(@list) %>
-<%= link_to "Back to Lists", lists_path  %>
-<%= link_to "Delete List", list_path(@list), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+<div class="d-flex justify-content-evenly mb-3">
+<%= link_to "Add a bookmark", new_list_bookmark_path(@list), class: "btn btn-primary" %>
+<%= link_to "Back to Lists", lists_path, class: "btn btn-info" %>
+<%= link_to "Delete List", list_path(@list), class: "btn btn-warning", data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+</div>

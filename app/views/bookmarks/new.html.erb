@@ -1,6 +1,8 @@
-<h1>Add a bookmark to the <%= @list.name %></h1>
+<div class="d-flex flex-column justify-content-center align-items-center mt-3 text-white">
+<h1>Add a bookmark to <%= @list.name %></h1>
 <%= simple_form_for [@list, @bookmark] do |f| %>
   <%= f.input :comment %>
   <%= f.association :movie %>
   <%= f.submit %>
 <% end %>
+</div>

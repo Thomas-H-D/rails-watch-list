@@ -14,6 +14,9 @@ gem "simple_form"
 # dotenv-rails
 gem "dotenv-rails"
 
+# cloudinary
+gem "cloudinary"
+
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 # Use the Puma web server [https://github.com/puma/puma]
